@@ -1,0 +1,88 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/lifecycleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity Life Cycle"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+</LinearLayout>
+
+
+
+
+Mainactivity.JAVA 
+
+
+package com.example.lifecycleapp;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    TextView lifecycleText;
+    String TAG = "ActivityLifecycle";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        lifecycleText = findViewById(R.id.lifecycleText);
+
+        lifecycleText.setText("onCreate() Called");
+        Log.d(TAG, "onCreate Called");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        lifecycleText.setText("onStart() Called");
+        Log.d(TAG, "onStart Called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lifecycleText.setText("onResume() Called");
+        Log.d(TAG, "onResume Called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause Called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop Called");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart Called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy Called");
+    }
+}
