@@ -1,0 +1,99 @@
+XML PROGRAM 
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER LOGIN"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"/>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Username"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
+
+
+
+
+MainActivity.JAVA
+
+
+package com.example.userverification;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText username, password;
+    Button submit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        submit = findViewById(R.id.submit);
+
+        submit.setOnClickListener(v -> {
+
+            String user = username.getText().toString();
+            String pass = password.getText().toString();
+
+            if (user.equals("admin") && pass.equals("1234")) {
+
+                Intent intent = new Intent(
+                    MainActivity.this, HomeActivity.class);
+
+                intent.putExtra("username", user);
+                intent.putExtra("password", pass);
+
+                startActivity(intent);
+
+            } else {
+
+                Toast.makeText(
+                    MainActivity.this,
+                    "Invalid Username or Password",
+                    Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+    }
+}
