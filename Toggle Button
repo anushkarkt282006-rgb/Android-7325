@@ -1,0 +1,75 @@
+XML Program
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOGGLE BUTTON"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"/>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="ON"
+        android:textOff="OFF"
+        android:checked="false"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: OFF"
+        android:textSize="22sp"
+        android:layout_marginTop="25dp"/>
+
+</LinearLayout>
+
+
+MainActivity.java
+
+
+package com.example.toggleapp;
+
+import android.os.Bundle;
+import android.widget.ToggleButton;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    ToggleButton toggleButton;
+    TextView status;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        toggleButton = findViewById(R.id.toggleButton);
+        status = findViewById(R.id.status);
+
+        toggleButton.setOnCheckedChangeListener(
+            (buttonView, isChecked) -> {
+
+                if (isChecked) {
+                    status.setText("Status: ON");
+                } else {
+                    status.setText("Status: OFF");
+                }
+            }
+        );
+    }
+}
